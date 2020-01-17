@@ -14,4 +14,13 @@ class TextService
 
         return (float) filter_var($string, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     }
+
+    /**
+     * @param string $string
+     * @return string|string[]
+     */
+    public static function replaceLowers(string $string)
+    {
+        return str_replace('_', '-', $string);
+    }
 }

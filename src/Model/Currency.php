@@ -6,8 +6,8 @@ use App\Model\Steam\SteamCurrency;
 
 class Currency
 {
-    public const RUB = 'rub';
-    public const USD = 'usd';
+    public const RUB = 'RUB';
+    public const USD = 'USD';
 
     /**
      * @param int $currency

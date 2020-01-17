@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\Steam\SteamMarketplace;
+use App\Service\TMMarketplace\TMCSGOMarketplace;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController
@@ -10,10 +11,8 @@ class HomeController
     /**
      * @Route("/", name="index")
      */
-    public function index(SteamMarketplace $marketplace)
+    public function index(TMCSGOMarketplace $marketplace)
     {
-        $res = $marketplace->getCsGoItemMetaData('StatTrak™ Five-SeveN | Copper Galaxy (Factory New)', 6);
-        var_dump($res);
-        exit;
+        $marketplace->retrieveInstance('AK-47 | Redline (Field-Tested)');
     }
 }

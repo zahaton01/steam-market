@@ -2,7 +2,7 @@
 
 namespace App\Model\Steam\CSGO;
 
-class CSGOItem
+class SteamCSGOItem
 {
     /** @var float */
     private $lowestPrice;
