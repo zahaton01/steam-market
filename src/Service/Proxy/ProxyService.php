@@ -7,6 +7,10 @@ class ProxyService
     /** @var ProxyGrabber  */
     private $grabber;
 
+    /**
+     * ProxyService constructor.
+     * @param ProxyGrabber $grabber
+     */
     public function __construct(ProxyGrabber $grabber)
     {
         $this->grabber = $grabber;

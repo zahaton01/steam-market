@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Factory;
+namespace App\Factory\CSGO;
 
-use App\Entity\CSGOItemBuyDecision;
+use App\Entity\CSGO\CSGOItemBuyDecision;
 use App\Model\Steam\CSGO\SteamCSGOItem;
 use App\Model\TMMarketplace\CSGO\TMCSGOItemCurrentInstance;
 
@@ -18,12 +18,8 @@ class CSGOItemBuyDecisionFactory
     {
         $decision = new CSGOItemBuyDecision();
         $decision
-            ->setInstance($instance->getInstance())
-            ->setHashName($instance->getHashName())
             ->setCurrency($item->getCurrency())
             ->setMarketPrice($instance->getPrice())
-            ->setSteamMarketplaceUrl($item->getMarketplaceUrl())
-            ->setTmMarketplaceUrl($instance->getLink())
             ->setSteamPrice($item->getLowestPrice());
 
         return $decision;

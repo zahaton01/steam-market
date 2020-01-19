@@ -2,11 +2,13 @@
 
 namespace App\Service\TMMarketplace;
 
-use App\Exception\TMMarketplace\TMItemNotFound;
-use App\Exception\TMMarketplace\TMRequestFailed;
+use App\Exception\TM\TMItemNotFound;
+use App\Exception\TM\TMRequestFailed;
 use App\Model\Currency;
 use App\Model\TMMarketplace\CSGO\TMCSGOItemCurrentInstance;
 use App\Model\TMMarketplace\CSGO\TMCSGOItemCurrentPrice;
+use App\Model\TMMarketplace\CSGO\TMCSGOItemPriceHistory;
+use App\Model\TMMarketplace\CSGO\TMCSGOItemSellHistory;
 use App\Service\TextService;
 
 class TMCSGOMarketplace
@@ -68,7 +70,7 @@ class TMCSGOMarketplace
                 ->setCurrency($currency)
                 ->setBuyOrder($item['buy_order'])
                 ->setMedianPrice($item['avg_price'])
-                ->setLink("https://market.csgo.com/en/item/$name/")
+                ->setLink("https://market.csgo.com/en/item/". TextService::replaceLowers($name) ."/")
                 ->setHashName($item['market_hash_name']);
 
             $result[] = $TMCSGOItemCurrentInstance;
@@ -104,12 +106,12 @@ class TMCSGOMarketplace
     /**
      * @param string $hashName
      *
-     * @return array
+     * @return TMCSGOItemPriceHistory
      *
      * @throws TMItemNotFound
      * @throws TMRequestFailed
      */
-    public function retrieveDetails(string $hashName)
+    public function retrieveDetails(string $hashName): TMCSGOItemPriceHistory
     {
         $details = $this->client->retrieveItemDetails($hashName)['data'][$hashName] ?? null;
 
@@ -117,6 +119,21 @@ class TMCSGOMarketplace
             throw new TMItemNotFound();
         }
 
-        return $details;
+        $priceHistory = new TMCSGOItemPriceHistory();
+        $priceHistory
+            ->setAverage($details['average'])
+            ->setMinPrice($details['min'])
+            ->setMaxPrice($details['max']);
+
+        foreach ($details['history'] as $sellHistory) {
+            $sell = new TMCSGOItemSellHistory();
+            $sell
+                ->setSellDate((new \DateTime())->setTimestamp($sellHistory[0]))
+                ->setPrice($sellHistory[1]);
+
+            $priceHistory->addSell($sell);
+        }
+
+        return $priceHistory;
     }
 }

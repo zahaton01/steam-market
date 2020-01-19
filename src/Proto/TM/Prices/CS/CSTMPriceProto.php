@@ -1,32 +1,28 @@
 <?php
 
-namespace App\Model\TMMarketplace\CSGO;
+namespace App\Proto\TM\Prices\CS;
 
-class TMCSGOItemCurrentPrice
+use App\Proto\AbstractProto;
+
+class CSTMPriceProto extends AbstractProto
 {
     /** @var string */
-    protected $currency;
-    /** @var string */
-    protected $hashName;
+    private $hashName;
     /** @var float */
-    protected $price;
+    private $price;
 
     /**
-     * @return string
-     */
-    public function getCurrency(): ?string
-    {
-        return $this->currency;
-    }
-
-    /**
-     * @param string $currency
+     * @param null $data
      *
-     * @return self
+     * @return $this
      */
-    public function setCurrency(?string $currency): self
+    public function init($data = null)
     {
-        $this->currency = $currency;
+        if (null !== $data) {
+            $this->price = $data['price'];
+            $this->hashName = $data['market_hash_name'];
+        }
+
         return $this;
     }
 

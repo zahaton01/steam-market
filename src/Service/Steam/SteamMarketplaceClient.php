@@ -12,6 +12,7 @@ use GuzzleHttp\Exception\ServerException;
 class SteamMarketplaceClient
 {
     public const GET_JSON_ITEM_OVERVIEW_URL = 'https://steamcommunity.com/market/priceoverview/';
+    public const PRICE_HISTORY_URL = 'https://steamcommunity.com/market/pricehistory/';
 
     /** @var Client  */
     protected $client;
@@ -24,6 +25,33 @@ class SteamMarketplaceClient
         $this->client = new Client([
             'cookies' => true
         ]);
+    }
+
+    /**
+     * @param string $itemName
+     * @param int $app
+     *
+     * @return array
+     *
+     * @throws SteamItemNotFound
+     * @throws SteamRequestFailed
+     */
+    public function retrievePriceHistory(string $itemName, int $app)
+    {
+        try {
+            $response = $this->client->request('GET', self::PRICE_HISTORY_URL . "?appid={$app}&market_hash_name={$itemName}");
+            $jsonResponse = json_decode($response->getBody()->getContents(), true);
+
+            if (!isset($jsonResponse) || null === $jsonResponse)
+                throw new SteamRequestFailed();
+
+            if (!isset($jsonResponse['success']) || !$jsonResponse['success'])
+                throw new SteamItemNotFound("$itemName was not found");
+
+            return $jsonResponse;
+        } catch (ClientException | ServerException $e) {
+            throw new SteamRequestFailed($e->getMessage());
+        }
     }
 
     /**
@@ -66,7 +94,7 @@ class SteamMarketplaceClient
                 throw new SteamRequestFailed();
 
             if (!isset($jsonResponse['success']) || !$jsonResponse['success'] || !isset($jsonResponse['lowest_price']) || !isset($jsonResponse['median_price']))
-                throw new SteamItemNotFound();
+                throw new SteamItemNotFound("$itemName was not found");
 
             return $jsonResponse;
         } catch (ClientException | ServerException $e) {

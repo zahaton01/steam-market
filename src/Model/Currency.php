@@ -8,14 +8,15 @@ class Currency
 {
     public const RUB = 'RUB';
     public const USD = 'USD';
+    public const UAH = 'UAH';
 
     /**
-     * @param int $currency
+     * @param int $steamCurrency
      * @return string
      */
-    public static function getFromSteamCurrency(int $currency)
+    public static function fromSteam(int $steamCurrency)
     {
-        switch ($currency) {
+        switch ($steamCurrency) {
             case SteamCurrency::RUB:
                 return static::RUB;
                 break;

@@ -2,7 +2,8 @@
 
 namespace App\Service\TMMarketplace;
 
-use App\Exception\TMMarketplace\TMRequestFailed;
+use App\Exception\TM\TMItemNotFound;
+use App\Exception\TM\TMRequestFailed;
 use App\Model\Currency;
 use App\Model\TMMarketplace\CSGO\TMCSGOItemCurrentInstance;
 use GuzzleHttp\Client;
@@ -50,7 +51,7 @@ class TMCSGOMarketplaceClient
 
             return $json;
         } catch (ClientException | ServerException $e) {
-            throw new TMRequestFailed();
+            throw new TMRequestFailed($e->getMessage());
         }
     }
 
@@ -72,7 +73,7 @@ class TMCSGOMarketplaceClient
 
             return $json;
         } catch (ClientException | ServerException $e) {
-            throw new TMRequestFailed();
+            throw new TMRequestFailed($e->getMessage());
         }
     }
 
@@ -82,6 +83,7 @@ class TMCSGOMarketplaceClient
      * @return mixed
      *
      * @throws TMRequestFailed
+     * @throws TMItemNotFound
      */
     public function retrieveInstance(string $itemName)
     {
@@ -90,11 +92,11 @@ class TMCSGOMarketplaceClient
             $json = json_decode($response->getBody()->getContents(), true);
 
             if (!isset($json['success']) || $json['success'] !== true || !isset($json['data']) || empty($json['data']))
-                throw new TMRequestFailed();
+                throw new TMItemNotFound("$itemName was not found");
 
             return $json;
         } catch (ClientException | ServerException $e) {
-            throw new TMRequestFailed();
+            throw new TMRequestFailed($e->getMessage());
         }
     }
 
@@ -104,6 +106,7 @@ class TMCSGOMarketplaceClient
      * @return mixed
      *
      * @throws TMRequestFailed
+     * @throws TMItemNotFound
      */
     public function retrieveItemDetails(string $itemName)
     {
@@ -112,11 +115,11 @@ class TMCSGOMarketplaceClient
             $json = json_decode($response->getBody()->getContents(), true);
 
             if (!isset($json['success']) || $json['success'] !== true || !isset($json['data']) || empty($json['data']))
-                throw new TMRequestFailed();
+                throw new TMItemNotFound("$itemName was not found");
 
             return $json;
         } catch (ClientException | ServerException $e) {
-            throw new TMRequestFailed();
+            throw new TMRequestFailed($e->getMessage());
         }
     }
 }

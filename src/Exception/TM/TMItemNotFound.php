@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exception\TMMarketplace;
+namespace App\Exception\TM;
 
 class TMItemNotFound extends \Exception
 {
