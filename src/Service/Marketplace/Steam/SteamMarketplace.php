@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Steam;
+namespace App\Service\Marketplace\Steam;
 
 use App\Exception\Steam\SteamItemNotFound;
 use App\Exception\Steam\SteamRequestFailed;

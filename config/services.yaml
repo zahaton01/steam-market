@@ -2,6 +2,7 @@ parameters:
     proxies:
         - 123
         - 122
+
 services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -14,3 +15,10 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    _instanceof:
+        App\Factory\CS\Resolver\CSFactoryInterface:
+            tags: [cs.factory]
+
+    App\Factory\CS\Resolver\CSFactoryResolver:
+        arguments: [!tagged cs.factory]

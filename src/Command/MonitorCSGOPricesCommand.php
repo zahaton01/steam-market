@@ -1,21 +1,21 @@
 <?php
-//
-//namespace App\Command;
-//
-//use App\Exception\Steam\SteamRequestFailed;
-//use App\Factory\CSGO\CSGOItemBuyDecisionFactory;
-//use App\Manager\BaseManager;
-//use App\Model\Steam\CSGO\SteamCSGOItem;
-//use App\Service\CalculationService;
-//use App\Service\DecisionMaker;
-//use App\Service\Proxy\ProxyService;
-//use App\Service\Steam\SteamMarketplace;
-//use App\Service\TMMarketplace\TMCSGOMarketplace;
-//use Symfony\Component\Console\Input\InputInterface;
-//use Symfony\Component\Console\Output\OutputInterface;
-//
-//class MonitorCSGOPricesCommand extends AbstractCommand
-//{
+
+namespace App\Command;
+
+use App\Exception\Steam\SteamRequestFailed;
+use App\Factory\CSGO\CSGOItemBuyDecisionFactory;
+use App\Manager\BaseManager;
+use App\Model\Steam\CSGO\SteamCSGOItem;
+use App\Service\CalculationService;
+use App\Service\DecisionMaker;
+use App\Service\Proxy\ProxyService;
+use App\Service\Steam\SteamMarketplace;
+use App\Service\TMMarketplace\TMCSGOMarketplace;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class MonitorCSGOPricesCommand extends AbstractCommand
+{
 //    /** @var SteamMarketplace  */
 //    private $steamMarketplace;
 //    /** @var TMCSGOMarketplace  */
@@ -141,4 +141,4 @@
 //
 //        return 1;
 //    }
-//}
+}

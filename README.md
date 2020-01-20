@@ -1,3 +1,7 @@
+API Aliases
+=
+https://csgobackpack.net/api/ - BP
+
 Marketplace aliases
 =
 * https://market.csgo.com/ - TM

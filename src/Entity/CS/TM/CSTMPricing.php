@@ -56,6 +56,13 @@ class CSTMPricing extends AbstractEntity
     private $sells;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string", nullable=false)
+     */
+    private $currency;
+
+    /**
      * @return CSItem
      */
     public function getItem(): ?CSItem
@@ -147,6 +154,25 @@ class CSTMPricing extends AbstractEntity
     public function addSell(?CSTMSell $sell): self
     {
         $this->sells[] = $sell;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     *
+     * @return self
+     */
+    public function setCurrency(?string $currency): self
+    {
+        $this->currency = $currency;
         return $this;
     }
 }

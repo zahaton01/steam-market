@@ -13,10 +13,11 @@ class CSTMPriceProto extends AbstractProto
 
     /**
      * @param null $data
+     * @param array $params
      *
-     * @return $this
+     * @return $this|mixed
      */
-    public function init($data = null)
+    public function init($data = null, array $params = [])
     {
         if (null !== $data) {
             $this->price = $data['price'];

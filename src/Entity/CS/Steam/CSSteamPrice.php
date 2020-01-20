@@ -21,12 +21,38 @@ class CSSteamPrice extends AbstractEntity
     use PriceTrait;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="median_price", type="float", nullable=false)
+     */
+    private $medianPrice;
+
+    /**
      * @var CSItem
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\CS\CSItem", inversedBy="steamPrices")
      * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
      */
     private $item;
+
+    /**
+     * @return float
+     */
+    public function getMedianPrice(): ?float
+    {
+        return $this->medianPrice;
+    }
+
+    /**
+     * @param float $medianPrice
+     *
+     * @return self
+     */
+    public function setMedianPrice(?float $medianPrice): self
+    {
+        $this->medianPrice = $medianPrice;
+        return $this;
+    }
 
     /**
      * @return CSItem

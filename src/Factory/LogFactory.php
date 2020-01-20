@@ -21,8 +21,7 @@ class LogFactory
             ->setSource($source)
             ->setExtras($extras)
             ->setLevel($level)
-            ->setCreationDate(new \DateTime('now'))
-        ;
+            ->setCreationDate(new \DateTime('now'));
 
         return $log;
     }

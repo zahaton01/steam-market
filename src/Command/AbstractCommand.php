@@ -27,9 +27,10 @@ abstract class AbstractCommand extends Command
     ) {
         parent::__construct();
         $this->logger = $logger;
-        $this->output = null;
         $this->commandOutputFactory = $commandOutputFactory;
         $this->manager = $manager;
+
+        $this->output = null;
     }
 
     /**

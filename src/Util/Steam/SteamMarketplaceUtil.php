@@ -2,7 +2,7 @@
 
 namespace App\Util;
 
-use App\Service\Steam\SteamMarketplace;
+use App\Service\Marketplace\Steam\SteamMarketplace;
 
 class SteamMarketplaceUtil
 {

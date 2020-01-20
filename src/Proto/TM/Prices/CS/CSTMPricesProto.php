@@ -26,13 +26,14 @@ class CSTMPricesProto extends AbstractProto
 
     /**
      * @param null $data
+     * @param array $params
      *
-     * @return $this
+     * @return $this|mixed
      */
-    public function init($data = null)
+    public function init($data = null, array $params = [])
     {
         if ($this->hasProto()) {
-            foreach ($this->getProto()->getDecodedJson()['prices'] as $price) {
+            foreach ($this->getProto()->getDecodedJson()['items'] as $price) {
                 $priceProto = (new CSTMPriceProto())->init($price);
                 $this->addPrice($priceProto);
             }

@@ -1,13 +1,34 @@
 <?php
 
-namespace App\Model\TMMarketplace\CSGO;
+namespace App\Proto\TM\Sells\CS;
 
-class TMCSGOItemSellHistory
+use App\Proto\AbstractProto;
+use App\Proto\JSONProto;
+
+class CSTMSellProto extends AbstractProto
 {
     /** @var \DateTime */
     private $sellDate;
     /** @var float */
     private $price;
+
+    /**
+     * @param null $data
+     * @param array $params
+     *
+     * @return mixed|void
+     *
+     * @throws \Exception
+     */
+    public function init($data = null, array $params = [])
+    {
+        if (null !== $data && !$this->hasProto()) {
+            $this->price = $data[1];
+            $this->sellDate = (new \DateTime())->setTimestamp($data[0]);
+        }
+
+        return $this;
+    }
 
     /**
      * @return \DateTime

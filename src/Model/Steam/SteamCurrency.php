@@ -8,6 +8,7 @@ class SteamCurrency
 {
     public const USD = 1;
     public const RUB = 5;
+    public const UAH = 18;
 
     public const SUFFIX_UAH = '₴';
 

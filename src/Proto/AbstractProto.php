@@ -48,9 +48,10 @@ abstract class AbstractProto
     /**
      * Returns model which represents data from JsonProto
      *
-     * @param null $params
+     * @param null $data
+     * @param array $params
      *
      * @return mixed
      */
-    abstract function init($params = null);
+    abstract function init($data = null, array $params = []);
 }

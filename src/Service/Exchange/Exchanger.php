@@ -2,16 +2,19 @@
 
 namespace App\Service\Exchange;
 
+use App\Exception\Exchange\BadExchangeRequest;
+use App\Exception\Exchange\ExchangeRateNotExist;
 use App\Model\Currency;
+use App\Service\Exchange\Model\FromCurrencyModel;
+use App\Service\Exchange\Model\ToCurrencyModel;
 
 class Exchanger
 {
-    /** @var float */
-    private $uahRubExchangeRate;
-
-    /** @var string */
+    /** @var array */
+    private $rates;
+    /** @var FromCurrencyModel */
     private $from;
-    /** @var string */
+    /** @var ToCurrencyModel */
     private $to;
 
     /**
@@ -19,58 +22,61 @@ class Exchanger
      */
     public function __construct()
     {
-        $this->uahRubExchangeRate = (float) $_ENV['UAH_RUB_EXCHANGE_RATE'];
+        $this->from = null;
+        $this->to = null;
+
+        $this->rates = [
+            Currency::UAH => [
+                Currency::RUB => $_ENV['UAH_RUB_EXCHANGE_RATE']
+            ]
+        ];
     }
 
     /**
      * @param string $currency
-     *
-     * @return $this
-     */
-    public function from(string $currency)
-    {
-        $this->from = $currency;
-
-        return $this;
-    }
-
-    /**
-     * @param string $currency
-     *
-     * @return $this
-     */
-    public function to(string $currency)
-    {
-        $this->to = $currency;
-
-        return $this;
-    }
-
-    /**
      * @param float $amount
      *
-     * @return float|int
+     * @return Exchanger
      */
-    public function amount(float $amount)
+    public function from(string $currency, float $amount): Exchanger
     {
-        $rate = $this->getExchangeRate();
+        $this->from = new FromCurrencyModel($currency, $amount);
 
-        if (null === $rate) {
-            return $amount;
-        }
-
-        return $amount * $rate;
+        return $this;
     }
 
     /**
-     * @return float|null
+     * @param string $currency
+     *
+     * @return $this
      */
-    private function getExchangeRate()
+    public function to(string $currency): Exchanger
     {
-        if ($this->from === Currency::UAH && $this->to === Currency::RUB) {
-            return $this->uahRubExchangeRate;
+        $this->to = new ToCurrencyModel($currency);
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     *
+     * @throws ExchangeRateNotExist
+     * @throws BadExchangeRequest
+     */
+    public function exchange(): float
+    {
+        if (null === $this->to || null === $this->from) {
+            throw new BadExchangeRequest("You did not specify from or to currency");
         }
 
-        return null;
+        if (!in_array($this->from->getCurrency(), $this->rates) ||
+            !in_array($this->to->getCurrency(), $this->rates[$this->from->getCurrency()])
+        ) {
+            throw new ExchangeRateNotExist("There is no rate to exchange from {$this->from->getCurrency()} to {$this->to->getCurrency()}");
+        }
+
+        $rate = $this->rates[$this->from->getCurrency()][$this->to->getCurrency()];
+
+        return $this->from->getAmount() * $rate;
     }
 }
