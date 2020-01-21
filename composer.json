@@ -47,7 +47,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "SteamLoginSdk\\": "resources/sdk/php-steamlogin/"
         }
     },
     "autoload-dev": {

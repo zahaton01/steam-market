@@ -38,17 +38,4 @@ class SteamMarketplace
     {
         return $this->client->getCSPriceOverview($hashName, SteamCurrency::fromApp($currency));
     }
-
-    /**
-     * @param string $itemName
-     *
-     * @return array
-     *
-     * @throws SteamItemNotFound
-     * @throws SteamRequestFailed
-     */
-    public function retrievePriceHistory(string $itemName)
-    {
-        return $this->client->retrievePriceHistory($itemName, SteamApp::CS_GO_APP_ID);
-    }
 }

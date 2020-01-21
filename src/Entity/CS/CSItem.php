@@ -4,7 +4,6 @@ namespace App\Entity\CS;
 
 use App\Entity\AbstractEntity;
 use App\Entity\CS\Steam\CSSteamPrice;
-use App\Entity\CS\Steam\CSSteamSell;
 use App\Entity\CS\TM\CSTMPricing;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
@@ -14,7 +13,7 @@ use Doctrine\ORM\PersistentCollection;
  * @package App\Entity\CS
  *
  * @ORM\Table("steam_cs_items")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\CS\CSItemRepository")
  */
 class CSItem extends AbstractEntity
 {
@@ -52,13 +51,6 @@ class CSItem extends AbstractEntity
      * @ORM\OneToMany(targetEntity="App\Entity\CS\Steam\CSSteamPrice", mappedBy="item")
      */
     private $steamPrices;
-
-    /**
-     * @var PersistentCollection
-     *
-     * @ORM\OneToMany(targetEntity="App\Entity\CS\Steam\CSSteamSell", mappedBy="item")
-     */
-    private $steamSells;
 
     /**
      * @var PersistentCollection
@@ -159,25 +151,6 @@ class CSItem extends AbstractEntity
     public function addSteamPrice(CSSteamPrice $steamPrice): self
     {
         $this->steamPrices[] = $steamPrice;
-        return $this;
-    }
-
-    /**
-     * @return PersistentCollection
-     */
-    public function getSteamSells(): ?PersistentCollection
-    {
-        return $this->steamSells;
-    }
-
-    /**
-     * @param CSSteamSell $steamSell
-     *
-     * @return self
-     */
-    public function addSteamSell(CSSteamSell $steamSell): self
-    {
-        $this->steamSells[] = $steamSell;
         return $this;
     }
 

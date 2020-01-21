@@ -70,6 +70,9 @@ abstract class AbstractCommand extends Command
         $this->message($message, CommandOutput::LEVEL_ERROR, $extras);
 
         $this->logger->error($message);
+
+        $commandOutput = $this->commandOutputFactory->create($this->getName(), $message, CommandOutput::LEVEL_ERROR, $extras);
+        $this->manager->save($commandOutput);
     }
 
     /**
@@ -83,6 +86,9 @@ abstract class AbstractCommand extends Command
         $this->space();
 
         $this->logger->error($message);
+
+        $commandOutput = $this->commandOutputFactory->create($this->getName(), $message, CommandOutput::LEVEL_ERROR, $extras);
+        $this->manager->save($commandOutput);
     }
 
     /**
@@ -117,9 +123,6 @@ abstract class AbstractCommand extends Command
      */
     private function message(string $message, string $level, array $extras = []): void
     {
-        $commandOutput = $this->commandOutputFactory->create($this->getName(), $message, $level, $extras);
-        $this->manager->save($commandOutput);
-
         switch ($level) {
             case CommandOutput::LEVEL_ERROR:
                 $this->output->writeln("<error>$message</error>");

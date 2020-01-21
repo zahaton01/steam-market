@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Factory\CS\CSItemFactory;
-use App\Factory\CS\Resolver\CSFactoryResolver;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController
@@ -11,7 +9,7 @@ class HomeController
     /**
      * @Route("/", name="index")
      */
-    public function index(CSFactoryResolver $factoryResolver)
+    public function index()
     {
         //$marketplace->retrieveInstance('AK-47 | Redline (Field-Tested)');
         //$res = $marketplace->retrieveItemSells('AK-47 | Redline (Field-Tested)');

@@ -5,7 +5,7 @@ namespace App\Factory\CS;
 use App\Entity\CS\CSItem;
 use App\Factory\CS\Resolver\CSFactoryInterface;
 use App\Model\Steam\SteamApp;
-use App\Util\SteamMarketplaceUtil;
+use App\Util\Steam\SteamMarketplaceUtil;
 
 class CSItemFactory implements CSFactoryInterface
 {

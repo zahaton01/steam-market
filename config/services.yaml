@@ -19,6 +19,11 @@ services:
     _instanceof:
         App\Factory\CS\Resolver\CSFactoryInterface:
             tags: [cs.factory]
+        App\Service\ResourceAPIs\APIResourceInterface:
+            tags: [api.resource]
 
     App\Factory\CS\Resolver\CSFactoryResolver:
         arguments: [!tagged cs.factory]
+
+    App\Service\ResourceAPIs\Resolver\ResourceAPIsResolver:
+        arguments: [!tagged api.resource]

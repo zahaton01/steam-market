@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Util;
+namespace App\Util\Steam;
 
 use App\Service\Marketplace\Steam\SteamMarketplace;
 
 class SteamMarketplaceUtil
 {
     /**
-     * @param int $hashName
+     * @param string $hashName
      * @param int $app
      *
      * @return string
      */
-    public static function itemLink(int $hashName, int $app)
+    public static function itemLink(string $hashName, int $app)
     {
         return SteamMarketplace::LISTING_URL . "$app/$hashName";
     }

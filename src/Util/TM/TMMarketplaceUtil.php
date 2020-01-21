@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Util;
+namespace App\Util\TM;
 
 
 use App\Service\Marketplace\TM\TMCSMarketplace;

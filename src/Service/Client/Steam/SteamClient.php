@@ -34,8 +34,9 @@ class SteamClient extends AbstractClient
             ]);
 
             $status = $json->getDecodedJson()['success'] ?? null;
+            $data = $json->getDecodedJson();
 
-            if (null === $status || false === $status)
+            if (null === $status || false === $status || !isset($data['lowest_price']) || !isset($data['median_price']))
                 throw new SteamItemNotFound("{$hashName} was not found on Steam");
 
             return new CSSteamPriceOverviewProto($json);
