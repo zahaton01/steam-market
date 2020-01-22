@@ -17,13 +17,18 @@ services:
         tags: ['controller.service_arguments']
 
     _instanceof:
-        App\Factory\CS\Resolver\CSFactoryInterface:
+        App\Domain\Factory\CS\Resolver\CSFactoryInterface:
             tags: [cs.factory]
-        App\Service\ResourceAPIs\APIResourceInterface:
+        App\Application\Resources\ApiResourceInterface:
             tags: [api.resource]
 
-    App\Factory\CS\Resolver\CSFactoryResolver:
+    App\Domain\Factory\CS\Resolver\CSFactoryResolver:
         arguments: [!tagged cs.factory]
 
-    App\Service\ResourceAPIs\Resolver\ResourceAPIsResolver:
+    App\Application\Resources\ApiResourceResolver:
         arguments: [!tagged api.resource]
+
+    #config
+    App\Application\Config\ConfigResolver:
+        arguments:
+            - '%kernel.project_dir%'

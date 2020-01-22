@@ -1,0 +1,10 @@
+{
+  "api_keys": {
+    "cs": "G2pJ6e6P4076FMmEKam00N3Qw4WiYp3"
+  },
+  "commission": {
+    "buy": 0.025,
+    "sell": 0.075,
+    "withdraw": 0.05
+  }
+}
