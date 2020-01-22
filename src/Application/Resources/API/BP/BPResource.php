@@ -11,20 +11,20 @@ class BPResource implements ApiResourceInterface
     private $jsonClient;
 
     /**
-     * @return string
-     */
-    public function getClass(): string
-    {
-        return BPResource::class;
-    }
-
-    /**
      * BPResource constructor.
      * @param BPJsonClient $client
      */
     public function __construct(BPJsonClient $client)
     {
         $this->jsonClient = $client;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClass(): string
+    {
+        return BPResource::class;
     }
 
     /**

@@ -39,6 +39,6 @@ class JsonClient extends AbstractClient
             throw new BadResponseException('Response is empty');
         }
 
-        return new JSONProto($contents);
+        return new JsonProto($contents);
     }
 }
