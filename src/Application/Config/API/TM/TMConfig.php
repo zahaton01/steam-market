@@ -19,7 +19,7 @@ class TMConfig implements ConfigInterface
      */
     public function __invoke(string $projectDir): ConfigInterface
     {
-        $this->config = json_decode(file_get_contents("$projectDir/resources/api/tm/tm_config.json"), true);
+        $this->config = json_decode(file_get_contents("$projectDir/resources/config/api/tm/tm_config.json"), true);
 
         return $this;
     }

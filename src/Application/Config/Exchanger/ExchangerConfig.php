@@ -19,7 +19,7 @@ class ExchangerConfig implements ConfigInterface
      */
     public function __invoke(string $projectDir): ConfigInterface
     {
-        $this->rates = json_decode(file_get_contents("$projectDir/resources/tools/exchanger/exchange_rates.json"), true);
+        $this->rates = json_decode(file_get_contents("$projectDir/resources/config/tools/exchanger/exchange_rates.json"), true);
 
         return $this;
     }
