@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Tool;
+namespace App\Http\Tools;
 
 use Doctrine\ORM\Query;
 use Knp\Component\Pager\Pagination\PaginationInterface;
