@@ -46,6 +46,8 @@ abstract class AbstractProto
      * Validates json proto before invoke
      *
      * @return bool
+     *
+     * @throws MissingProtoFieldException
      */
     abstract function validate(): bool;
 }

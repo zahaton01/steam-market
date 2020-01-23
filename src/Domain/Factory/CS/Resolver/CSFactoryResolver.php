@@ -24,7 +24,7 @@ class CSFactoryResolver
      *
      * @return mixed|null
      */
-    public function get(string $class): ?CSFactoryInterface
+    public function resolve(string $class): ?CSFactoryInterface
     {
         foreach ($this->factories as $factory) {
             if ($factory->getClass() === $class)

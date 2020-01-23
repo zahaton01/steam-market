@@ -28,7 +28,7 @@ class ApiResourceResolver
      *
      * @throws ApiResourceNotFound
      */
-    public function get(string $class): ?APIResourceInterface
+    public function resolve(string $class): ?APIResourceInterface
     {
         $apiResource = null;
         foreach ($this->resources as $resource) {
