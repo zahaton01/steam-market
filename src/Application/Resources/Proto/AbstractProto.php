@@ -5,6 +5,9 @@ namespace App\Application\Resources\Proto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 use App\Application\Service\Client\JSON\Proto\JsonProto;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 abstract class AbstractProto
 {
     /** @var JsonProto  */

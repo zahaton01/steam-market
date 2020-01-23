@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\ArgumentResolver\Error;
+namespace App\Http\Model\Error;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class Error
 {
     /** @var string */

@@ -3,12 +3,16 @@
 namespace App\Application\Tools\Exchanger;
 
 use App\Application\Config\ConfigResolver;
+use App\Application\Config\Exchanger\ExchangerConfig;
 use App\Application\Model\Currency;
 use App\Application\Tools\Exchanger\Exception\BadExchangeRequest;
 use App\Application\Tools\Exchanger\Exception\ExchangeRateNotExist;
 use App\Application\Tools\Exchanger\Model\FromCurrencyModel;
 use App\Application\Tools\Exchanger\Model\ToCurrencyModel;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class Exchanger
 {
     /** @var array */
@@ -24,7 +28,7 @@ class Exchanger
      */
     public function __construct(ConfigResolver $config)
     {
-        $this->rates = $config->getExchanger()['rates'];
+        $this->rates = $config->resolve(ExchangerConfig::class)->getRates();
     }
 
     /**

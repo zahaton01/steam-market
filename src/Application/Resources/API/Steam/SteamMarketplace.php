@@ -7,6 +7,9 @@ use App\Application\Resources\API\Steam\Client\SteamJsonClient;
 use App\Application\Resources\API\Steam\Model\SteamCurrency;
 use App\Application\Resources\API\Steam\Proto\PriceOverview\PriceOverviewProto;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class SteamMarketplace implements ApiResourceInterface
 {
     private $jsonClient;

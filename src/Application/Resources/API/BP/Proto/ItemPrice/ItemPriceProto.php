@@ -5,6 +5,9 @@ namespace App\Application\Resources\API\BP\Proto\ItemPrice;
 use App\Application\Resources\Proto\AbstractProto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ItemPriceProto extends AbstractProto
 {
     /** @var string */

@@ -4,6 +4,9 @@ namespace App\Domain\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 trait CreationDateTrait
 {
     /**

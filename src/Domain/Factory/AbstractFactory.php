@@ -2,6 +2,9 @@
 
 namespace App\Domain\Factory;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 abstract class AbstractFactory
 {
     /**

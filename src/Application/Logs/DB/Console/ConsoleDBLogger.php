@@ -5,6 +5,9 @@ namespace App\Application\Logs\DB\Console;
 use App\Application\Logs\DB\AbstractDBLogger;
 use App\Domain\Entity\Log;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ConsoleDBLogger extends AbstractDBLogger
 {
     /**

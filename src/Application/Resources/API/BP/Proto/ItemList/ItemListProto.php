@@ -7,6 +7,9 @@ use App\Application\Resources\API\BP\Proto\ItemList\Model\ItemPrice;
 use App\Application\Resources\Proto\AbstractProto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ItemListProto extends AbstractProto
 {
     /** @var Item[] */

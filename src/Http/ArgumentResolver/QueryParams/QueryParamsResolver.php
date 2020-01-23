@@ -2,10 +2,13 @@
 
 namespace App\Http\ArgumentResolver;
 
-use App\Http\ArgumentResolver\QueryParams\QueryParams;
+use App\Domain\Query\Params\QueryParams;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class QueryParamsResolver extends AbstractArgumentResolver
 {
     /** @var string */

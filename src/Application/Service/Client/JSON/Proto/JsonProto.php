@@ -2,6 +2,9 @@
 
 namespace App\Application\Service\Client\JSON\Proto;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class JsonProto
 {
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Application\Util;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class TextUtil
 {
     /**

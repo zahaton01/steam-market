@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\ArgumentResolver\QueryParams;
+namespace App\Domain\Query;
 
-class QueryFilter
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
+abstract class AbstractQueryFilter
 {
     /** @var string  */
     protected $value;
@@ -11,25 +14,25 @@ class QueryFilter
      * QueryFilter constructor.
      * @param string $value
      */
-    public function __construct(string $value)
+    public function __construct($value)
     {
         $this->value = $value;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getValue(): ?string
+    public function __toString()
     {
-        return $this->value;
+        return (string) $this->value;
     }
 
     /**
      * @return string|null
      */
-    public function formatted(): ?string
+    public function string(): ?string
     {
-        return mb_strtolower(trim($this->value));
+        return (string) $this->value;
     }
 
     /**

@@ -8,6 +8,9 @@ use App\Application\Service\Client\JSON\Proto\JsonProto;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class JsonClient extends AbstractClient
 {
     private const CONTENT_TYPE_JSON = 'application/json';

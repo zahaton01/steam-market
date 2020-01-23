@@ -8,7 +8,10 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class PaginatorTool
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
+class Paginator
 {
     /** @var PaginatorInterface  */
     private $paginator;

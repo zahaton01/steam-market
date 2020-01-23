@@ -2,6 +2,9 @@
 
 namespace App\Application\Resources\API\TM\Proto\ItemInstances\CS\Model;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ItemInstance
 {
     /** @var string */

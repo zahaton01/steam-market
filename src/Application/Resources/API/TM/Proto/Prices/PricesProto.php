@@ -6,6 +6,9 @@ use App\Application\Resources\API\TM\Proto\Prices\Model\ItemPrice;
 use App\Application\Resources\Proto\AbstractProto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class PricesProto extends AbstractProto
 {
     /** @var ItemPrice[] */

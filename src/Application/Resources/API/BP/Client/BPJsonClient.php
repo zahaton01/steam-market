@@ -10,6 +10,9 @@ use App\Application\Resources\API\BP\Proto\ItemPrice\ItemPriceProto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 use App\Application\Service\Client\JSON\JsonClient;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class BPJsonClient extends JsonClient
 {
     private const URL_LIST = 'http://csgobackpack.net/api/GetItemsList/v2/';

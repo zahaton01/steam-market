@@ -6,6 +6,9 @@ use App\Application\Resources\API\TM\Proto\ItemInstances\CS\Model\ItemInstance;
 use App\Application\Resources\Proto\AbstractProto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ItemInstancesProto extends AbstractProto
 {
     /** @var string */

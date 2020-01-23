@@ -8,6 +8,9 @@ use App\Domain\Entity\CS\CSItem;
 use App\Domain\Factory\AbstractFactory;
 use App\Domain\Factory\CS\Resolver\CSFactoryInterface;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class CSItemFactory extends AbstractFactory implements CSFactoryInterface
 {
     /**

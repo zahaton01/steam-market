@@ -2,7 +2,9 @@
 
 namespace App\Application\Model;
 
-
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class Currency
 {
     public const RUB = 'RUB';

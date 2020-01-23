@@ -9,8 +9,7 @@ use App\Domain\Traits\SellDateTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class CSTMSell
- * @package App\Entity\CS\TM
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
  *
  * @ORM\Table("tm_cs_sells")
  * @ORM\Entity()

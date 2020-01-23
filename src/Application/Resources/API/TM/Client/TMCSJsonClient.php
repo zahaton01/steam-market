@@ -10,6 +10,9 @@ use App\Application\Resources\API\TM\Proto\Prices\PricesProto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 use App\Application\Service\Client\JSON\JsonClient;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class TMCSJsonClient extends JsonClient
 {
     private const URL_PRICES = 'https://market.csgo.com/api/v2/prices/';

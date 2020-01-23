@@ -5,6 +5,9 @@ namespace App\Application\Resources\API\BP;
 use App\Application\Resources\API\BP\Client\BPJsonClient;
 use App\Application\Resources\ApiResourceInterface;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class BPResource implements ApiResourceInterface
 {
     /** @var BPJsonClient */

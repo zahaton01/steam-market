@@ -6,6 +6,9 @@ use App\Model\Pagination\Pagination;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class CSItemRepository extends EntityRepository
 {
     /**

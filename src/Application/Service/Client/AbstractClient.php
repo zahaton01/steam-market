@@ -4,6 +4,9 @@ namespace App\Application\Service\Client;
 
 use GuzzleHttp\Client;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 abstract class AbstractClient
 {
     /** @var Client  */

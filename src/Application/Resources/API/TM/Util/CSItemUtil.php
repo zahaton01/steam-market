@@ -2,6 +2,9 @@
 
 namespace App\Application\Resources\API\TM\Util;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class CSItemUtil
 {
     public const URL_ITEM = 'https://market.csgo.com/en/item/';

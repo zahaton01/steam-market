@@ -4,6 +4,9 @@ namespace App\Application\Resources;
 
 use App\Application\Exception\ApiResource\ApiResourceNotFound;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ApiResourceResolver
 {
     /** @var ApiResourceInterface[]  */

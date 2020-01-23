@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\ArgumentResolver\Error\Resolver;
+namespace App\Http\ArgumentResolver\Error;
 
 use App\Http\ArgumentResolver\AbstractArgumentResolver;
 use App\Http\ArgumentResolver\Error\Error;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ErrorResolver extends AbstractArgumentResolver
 {
     /**

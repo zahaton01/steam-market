@@ -9,8 +9,7 @@ use App\Domain\Traits\PriceTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class CSSteamPrice
- * @package App\Entity\CS\Steam
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
  *
  * @ORM\Table("steam_cs_prices")
  * @ORM\Entity()

@@ -6,6 +6,9 @@ use App\Application\Resources\Proto\AbstractProto;
 use App\Application\Resources\Proto\Exception\MissingProtoFieldException;
 use App\Application\Util\TextUtil;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class PriceOverviewProto extends AbstractProto
 {
     /** @var float */

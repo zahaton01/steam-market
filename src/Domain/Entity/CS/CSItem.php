@@ -9,8 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 
 /**
- * Class CSItem
- * @package App\Entity\CS
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
  *
  * @ORM\Table("steam_cs_items")
  * @ORM\Entity(repositoryClass="App\Domain\Repository\CS\CSItemRepository")

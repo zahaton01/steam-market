@@ -2,6 +2,9 @@
 
 namespace App\Domain\Traits;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 trait PriceTrait
 {
     /**

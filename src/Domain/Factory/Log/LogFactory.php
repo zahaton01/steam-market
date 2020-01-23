@@ -5,6 +5,9 @@ namespace App\Domain\Factory\Log;
 use App\Domain\Entity\Log;
 use App\Domain\Factory\AbstractFactory;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class LogFactory extends AbstractFactory
 {
     /**

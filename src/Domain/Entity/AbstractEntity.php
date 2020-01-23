@@ -5,8 +5,7 @@ namespace App\Domain\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class AbstractEntity
- * @package App\Entity
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
  *
  * @ORM\MappedSuperclass()
  */

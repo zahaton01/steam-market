@@ -9,6 +9,9 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class LogRepository extends EntityRepository
 {
     /**

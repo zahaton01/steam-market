@@ -2,36 +2,40 @@
 
 namespace App\Application\Config;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ConfigResolver
 {
-    /** @var array */
-    private $exchanger = [];
-    /** @var array */
-    private $tm;
+    /** @var ConfigInterface[] */
+    private $configs;
+    /** @var string */
+    private $projectDir;
 
     /**
      * ConfigResolver constructor.
+     * @param iterable $configs
      * @param string $projectDir
      */
-    public function __construct(string $projectDir)
+    public function __construct(iterable $configs, string $projectDir)
     {
-        $this->exchanger['rates'] = json_decode(file_get_contents("$projectDir/resources/tools/exchanger/exchange_rates.json"), true);
-        $this->tm = json_decode(file_get_contents("$projectDir/resources/api/tm/tm_config.json"), true);
+        $this->configs = $configs;
+        $this->projectDir = $projectDir;
     }
 
     /**
-     * @return array
+     * @param string $class
+     *
+     * @return ConfigInterface|null
      */
-    public function getExchanger(): ?array
+    public function resolve(string $class): ConfigInterface
     {
-        return $this->exchanger;
-    }
+        foreach ($this->configs as $config) {
+            if ($config->getClass() === $class) {
+                return $config->__invoke($this->projectDir);
+            }
+        }
 
-    /**
-     * @return array
-     */
-    public function getTm(): ?array
-    {
-        return $this->tm;
+        return null;
     }
 }

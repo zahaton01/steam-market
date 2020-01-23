@@ -2,6 +2,9 @@
 
 namespace App\Application\Tools\Exchanger\Model;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ToCurrencyModel
 {
     /** @var string */

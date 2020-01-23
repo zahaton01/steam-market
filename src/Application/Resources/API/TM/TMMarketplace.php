@@ -6,6 +6,9 @@ use App\Application\Config\ConfigResolver;
 use App\Application\Resources\API\TM\Client\TMCSJsonClient;
 use App\Application\Resources\ApiResourceInterface;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class TMMarketplace implements ApiResourceInterface
 {
     /** @var TMCSJsonClient  */

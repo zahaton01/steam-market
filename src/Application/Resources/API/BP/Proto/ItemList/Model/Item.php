@@ -2,6 +2,9 @@
 
 namespace App\Application\Resources\API\BP\Proto\ItemList\Model;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class Item
 {
     public const DAY = '24_hours';

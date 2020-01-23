@@ -6,6 +6,9 @@ use App\Domain\Entity\Log;
 use App\Domain\Factory\Log\LogFactory;
 use App\Domain\Manager\BaseManager;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 abstract class AbstractDBLogger
 {
     /** @var LogFactory */
@@ -29,8 +32,6 @@ abstract class AbstractDBLogger
      * @param string $source
      * @param string $level
      * @param array $extras
-     *
-     * @param int $code
      *
      * @return Log|mixed
      */

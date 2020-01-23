@@ -9,8 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 
 /**
- * Class CSTMPricing
- * @package App\Entity\CS\TM
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
  *
  * @ORM\Table("tm_cs_pricings")
  * @ORM\Entity()

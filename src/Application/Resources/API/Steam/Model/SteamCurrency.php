@@ -4,6 +4,9 @@ namespace App\Application\Resources\API\Steam\Model;
 
 use App\Application\Model\Currency;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class SteamCurrency
 {
     public const USD = 1;

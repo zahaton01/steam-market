@@ -2,6 +2,9 @@
 
 namespace App\Application\Resources\API\TM\Proto\Prices\Model;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class ItemPrice
 {
     /** @var string */

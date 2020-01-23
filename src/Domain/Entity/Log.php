@@ -6,6 +6,8 @@ use App\Domain\Traits\CreationDateTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ *
  * @ORM\Table(name="logs")
  * @ORM\Entity(repositoryClass="App\Repository\LogRepository")
  */

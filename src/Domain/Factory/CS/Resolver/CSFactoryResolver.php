@@ -2,6 +2,9 @@
 
 namespace App\Domain\Factory\CS\Resolver;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class CSFactoryResolver
 {
     /** @var CSFactoryInterface[]  */

@@ -2,6 +2,9 @@
 
 namespace App\Domain\Tool\Pagination;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class Pagination
 {
     /** @var integer */

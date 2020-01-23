@@ -4,6 +4,9 @@ namespace App\Domain\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class BaseManager
 {
     /**

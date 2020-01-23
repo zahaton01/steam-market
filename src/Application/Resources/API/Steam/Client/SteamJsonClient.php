@@ -9,6 +9,9 @@ use App\Application\Resources\API\Steam\Exception\SteamRequestFailed;
 use App\Application\Resources\API\Steam\Proto\PriceOverview\PriceOverviewProto;
 use App\Application\Service\Client\JSON\JsonClient;
 
+/**
+ * @author  Anton Zakharuk <zahaton01@gmail.com>
+ */
 class SteamJsonClient extends JsonClient
 {
     private const URL_PRICE_OVERVIEW = 'https://steamcommunity.com/market/priceoverview/';
