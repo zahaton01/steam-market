@@ -3,6 +3,7 @@
 namespace App\Application\Config\API\TM;
 
 use App\Application\Config\ConfigInterface;
+use App\Application\Exception\Config\ConfigInvokeFailed;
 
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
@@ -13,13 +14,18 @@ class TMConfig implements ConfigInterface
     private $config;
 
     /**
-     * @param string $projectDir
+     * @param array $params
      *
      * @return ConfigInterface
+     *
+     * @throws ConfigInvokeFailed
      */
-    public function __invoke(string $projectDir): ConfigInterface
+    public function __invoke(array $params = []): ConfigInterface
     {
-        $this->config = json_decode(file_get_contents("$projectDir/resources/config/api/tm/tm_config.json"), true);
+        if (!isset($params['project_dir']))
+            throw new ConfigInvokeFailed('Missing project dir in params');
+
+        $this->config = json_decode(file_get_contents("{$params['project_dir']}/resources/config/api/tm/tm_config.json"), true);
 
         return $this;
     }

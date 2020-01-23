@@ -2,6 +2,8 @@
 
 namespace App\Application\Config;
 
+use App\Application\Exception\Config\ConfigInvokeFailed;
+
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
  */
@@ -26,13 +28,17 @@ class ConfigResolver
     /**
      * @param string $class
      *
-     * @return ConfigInterface|null
+     * @return ConfigInterface
+     *
+     * @throws ConfigInvokeFailed
      */
     public function resolve(string $class): ConfigInterface
     {
         foreach ($this->configs as $config) {
             if ($config->getClass() === $class) {
-                return $config->__invoke($this->projectDir);
+                return $config->__invoke([
+                    'project_dir' => $this->projectDir
+                ]);
             }
         }
 

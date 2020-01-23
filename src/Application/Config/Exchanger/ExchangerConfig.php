@@ -3,6 +3,7 @@
 namespace App\Application\Config\Exchanger;
 
 use App\Application\Config\ConfigInterface;
+use App\Application\Exception\Config\ConfigInvokeFailed;
 
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
@@ -13,13 +14,18 @@ class ExchangerConfig implements ConfigInterface
     private $rates;
 
     /**
-     * @param string $projectDir
+     * @param array $params
      *
      * @return ConfigInterface
+     *
+     * @throws ConfigInvokeFailed
      */
-    public function __invoke(string $projectDir): ConfigInterface
+    public function __invoke(array $params = []): ConfigInterface
     {
-        $this->rates = json_decode(file_get_contents("$projectDir/resources/config/tools/exchanger/exchange_rates.json"), true);
+        if (!isset($params['project_dir']))
+            throw new ConfigInvokeFailed('Missing project dir in params');
+
+        $this->rates = json_decode(file_get_contents("{$params['project_dir']}/resources/config/tools/exchanger/exchange_rates.json"), true);
 
         return $this;
     }
