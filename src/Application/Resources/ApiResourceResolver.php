@@ -32,6 +32,7 @@ class ApiResourceResolver
     {
         $apiResource = null;
         foreach ($this->resources as $resource) {
+
             if ($resource->getClass() === $class)
                 $apiResource = $resource;
         }

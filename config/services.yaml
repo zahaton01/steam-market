@@ -35,5 +35,5 @@ services:
     #config
     App\Application\Config\ConfigResolver:
         arguments:
-            - !tagged api.resource
+            - !tagged app.config
             - '%kernel.project_dir%'

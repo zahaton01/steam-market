@@ -64,4 +64,12 @@ class BaseManager
 
         return null;
     }
+
+    /**
+     * @return EntityManagerInterface
+     */
+    public function getEntityManager(): EntityManagerInterface
+    {
+        return $this->em;
+    }
 }

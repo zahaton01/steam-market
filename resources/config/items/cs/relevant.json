@@ -1,0 +1,23 @@
+{
+  "banned_for_buying": {
+    "tags": [
+      "Souvenir",
+      "Capsule",
+      "Case",
+      "Pin",
+      "Music",
+      "Sticker",
+      "Graffiti",
+      "Bayonet",
+      "Knife",
+      "Gloves",
+      "Hand Wraps",
+      "Karambit",
+      "Daggers",
+      "KSK"
+    ],
+    "exclude": [
+      "Case Hardened"
+    ]
+  }
+}
