@@ -3,6 +3,7 @@
 namespace App\Application\Config;
 
 use App\Application\Exception\Config\ConfigInvokeFailed;
+use App\Application\Exception\Config\ConfigNotFound;
 
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
@@ -11,18 +12,14 @@ class ConfigResolver
 {
     /** @var ConfigInterface[] */
     private $configs;
-    /** @var string */
-    private $projectDir;
 
     /**
      * ConfigResolver constructor.
      * @param iterable $configs
-     * @param string $projectDir
      */
-    public function __construct(iterable $configs, string $projectDir)
+    public function __construct(iterable $configs)
     {
         $this->configs = $configs;
-        $this->projectDir = $projectDir;
     }
 
     /**
@@ -31,17 +28,21 @@ class ConfigResolver
      * @return ConfigInterface
      *
      * @throws ConfigInvokeFailed
+     * @throws ConfigNotFound
      */
     public function resolve(string $class): ConfigInterface
     {
+        $resolved = null;
         foreach ($this->configs as $config) {
-            if ($config->getClass() === $class) {
-                return $config->__invoke([
-                    'project_dir' => $this->projectDir
-                ]);
+            if (get_class($config) === $class) {
+                $resolved = $config->__invoke();
             }
         }
 
-        return null;
+        if (null === $resolved) {
+            throw new ConfigNotFound("$class was not found");
+        }
+
+        return $resolved;
     }
 }

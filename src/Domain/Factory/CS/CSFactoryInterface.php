@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domain\Factory\CS\Resolver;
+namespace App\Domain\Factory\CS;
 
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
  */
 interface CSFactoryInterface
 {
-    public function getClass(): string;
+
 }

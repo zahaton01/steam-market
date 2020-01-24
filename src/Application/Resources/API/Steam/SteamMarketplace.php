@@ -24,14 +24,6 @@ class SteamMarketplace implements ApiResourceInterface
     }
 
     /**
-     * @return string
-     */
-    public function getClass(): string
-    {
-        return SteamMarketplace::class;
-    }
-
-    /**
      * @param string $hashName
      * @param int $app
      * @param string $currency

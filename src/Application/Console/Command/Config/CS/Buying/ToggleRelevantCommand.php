@@ -6,6 +6,7 @@ use App\Application\Config\ConfigResolver;
 use App\Application\Config\Items\CS\CSItemsConfig;
 use App\Application\Console\Command\Config\AbstractConfigCommand;
 use App\Application\Exception\Config\ConfigInvokeFailed;
+use App\Application\Exception\Config\ConfigNotFound;
 use App\Application\Logs\DB\Console\ConsoleDBLogger;
 use App\Application\Model\Currency;
 use App\Application\Resources\API\BP\BPResource;
@@ -36,12 +37,14 @@ class ToggleRelevantCommand extends AbstractConfigCommand
      * @param ApiResourceResolver $resources
      *
      * @throws ConfigInvokeFailed
+     * @throws ConfigNotFound
      */
     public function __construct(ConsoleDBLogger $logger, BaseManager $manager, ConfigResolver $config, ApiResourceResolver $resources)
     {
         parent::__construct($logger, $manager, $config);
 
         $this->resources = $resources;
+
         /** @var CSItemsConfig $config */
         $config = $this->config->resolve(CSItemsConfig::class);
         $this->bannedTags = $config->getBannedForBuying()['banned_for_buying'];
@@ -66,16 +69,16 @@ class ToggleRelevantCommand extends AbstractConfigCommand
     {
         $this->setOutput($output);
 
-        $pagination = new Pagination(1, 1); // faking amount to retrieve total count
+        $pagination = new Pagination(1, 1); // faking page size to retrieve total count
         /** @var CSItem[] $items */
         $items = $this->manager->getEntityManager()->getRepository(CSItem::class)->getAllItems($pagination);
         /** @var ItemListProto $itemList */
         $itemList = $this->resources->resolve(BPResource::class)->getItemList(Currency::RUB);
         $pagination->setTotalItems(count($items));
+        $pagination->setPageSize(5000);
 
         for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
             $pagination->setPage($i);
-            $pagination->setPageSize(5000);
 
             /** @var CSItem[] $items */
             $items = $this->manager->getEntityManager()->getRepository(CSItem::class)->getAllItems($pagination);
@@ -99,7 +102,7 @@ class ToggleRelevantCommand extends AbstractConfigCommand
                 foreach ($itemList->getItems() as $index => $itemProto) {
                     if ($itemProto->getHashName() === $item->getHashName()) {
                         $price = $itemProto->getWeekPrice() ? $itemProto->getWeekPrice()->getAverage() : 0;
-                        unset($itemList->getItems()[$index]); // reducing array size
+                        unset($itemList->getItems()[$index]); // reducing array size for followed loops
                     }
                 }
 
@@ -120,6 +123,7 @@ class ToggleRelevantCommand extends AbstractConfigCommand
             $this->manager->getEntityManager()->clear();
         }
 
+        $this->comment("Finished. Execution time: {$this->getExecutionTime()} seconds");
         return 1;
     }
 

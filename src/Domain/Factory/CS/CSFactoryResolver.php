@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Domain\Factory\CS\Resolver;
+namespace App\Domain\Factory\CS;
+
+use App\Domain\Exception\Factory\FactoryNotFound;
 
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
@@ -22,15 +24,22 @@ class CSFactoryResolver
     /**
      * @param string $class
      *
-     * @return mixed|null
+     * @return CSFactoryInterface
+     *
+     * @throws FactoryNotFound
      */
     public function resolve(string $class): ?CSFactoryInterface
     {
+        $resolved = null;
         foreach ($this->factories as $factory) {
-            if ($factory->getClass() === $class)
-                return $factory;
+            if (get_class($factory) === $class)
+                $resolved = $factory;
         }
 
-        return null;
+        if (null === $resolved) {
+            throw new FactoryNotFound("$class was not found");
+        }
+
+        return $resolved;
     }
 }

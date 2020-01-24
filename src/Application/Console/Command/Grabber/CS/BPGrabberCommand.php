@@ -8,11 +8,13 @@ use App\Application\Model\Currency;
 use App\Application\Resources\API\BP\BPResource;
 use App\Application\Resources\API\BP\Proto\ItemList\ItemListProto;
 use App\Application\Resources\ApiResourceResolver;
-use App\Domain\Factory\CS\CSItemFactory;
-use App\Domain\Factory\CS\Resolver\CSFactoryResolver;
+use App\Domain\Entity\CS\CSItem;
+use App\Domain\Factory\CS\CSFactoryResolver;
+use App\Domain\Factory\CS\Item\CSItemFactory;
 use App\Domain\Manager\BaseManager;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
@@ -30,9 +32,15 @@ class BPGrabberCommand extends AbstractGrabberCommand
      * @param BaseManager $manager
      * @param ApiResourceResolver $resources
      * @param CSFactoryResolver $factories
+     *
+     * @throws \Exception
      */
-    public function __construct(ConsoleDBLogger $logger, BaseManager $manager, ApiResourceResolver $resources, CSFactoryResolver $factories)
-    {
+    public function __construct(
+        ConsoleDBLogger $logger,
+        BaseManager $manager,
+        ApiResourceResolver $resources,
+        CSFactoryResolver $factories
+    ) {
         parent::__construct($logger, $manager);
 
         $this->factories = $factories;
@@ -61,10 +69,10 @@ class BPGrabberCommand extends AbstractGrabberCommand
         $this->info('Getting items from CSGOBackpack');
         /** @var ItemListProto $items */
         $items = $this->resources->resolve(BPResource::class)->getItemList(Currency::RUB);
-        $this->comment('Done');
+        $this->comment('Done. Saving...');
 
         foreach ($items->getItems() as $item) {
-            if ($this->doesItemExist($item->getHashName()))
+            if ($this->doesItemExist($item->getHashName(), CSItem::class))
                 continue;
 
             $this->info("Saving {$item->getHashName()}");
@@ -78,7 +86,7 @@ class BPGrabberCommand extends AbstractGrabberCommand
             $this->error($e->getMessage());
         }
 
-        $this->comment('Finished');
+        $this->comment("Finished. Execution time: {$this->getExecutionTime()} seconds");
         return 1;
     }
 }

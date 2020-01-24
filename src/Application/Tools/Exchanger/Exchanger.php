@@ -4,6 +4,8 @@ namespace App\Application\Tools\Exchanger;
 
 use App\Application\Config\ConfigResolver;
 use App\Application\Config\Exchanger\ExchangerConfig;
+use App\Application\Exception\Config\ConfigInvokeFailed;
+use App\Application\Exception\Config\ConfigNotFound;
 use App\Application\Model\Currency;
 use App\Application\Tools\Exchanger\Exception\BadExchangeRequest;
 use App\Application\Tools\Exchanger\Exception\ExchangeRateNotExist;
@@ -25,6 +27,9 @@ class Exchanger
     /**
      * Exchanger constructor.
      * @param ConfigResolver $config
+     *
+     * @throws ConfigNotFound
+     * @throws ConfigInvokeFailed
      */
     public function __construct(ConfigResolver $config)
     {

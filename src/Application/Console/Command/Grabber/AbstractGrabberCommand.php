@@ -12,12 +12,13 @@ abstract class AbstractGrabberCommand extends AbstractCommand
 {
     /**
      * @param string $hashName
+     * @param string $class
      *
      * @return bool
      */
-    protected function doesItemExist(string $hashName)
+    protected function doesItemExist(string $hashName, string $class)
     {
-        $item = $this->manager->getEntityManager()->getRepository(CSItem::class)->findOneBy(['hashName' => $hashName]);
+        $item = $this->manager->getEntityManager()->getRepository($class)->findOneBy(['hashName' => $hashName]);
 
         if (null === $item) {
             return false;

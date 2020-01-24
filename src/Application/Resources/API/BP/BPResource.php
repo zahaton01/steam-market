@@ -23,14 +23,6 @@ class BPResource implements ApiResourceInterface
     }
 
     /**
-     * @return string
-     */
-    public function getClass(): string
-    {
-        return BPResource::class;
-    }
-
-    /**
      * @param string $currency
      *
      * @return Proto\ItemList\ItemListProto

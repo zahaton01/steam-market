@@ -18,11 +18,15 @@ abstract class AbstractCommand extends Command
     protected $output;
     /** @var BaseManager */
     protected $manager;
+    /** @var \DateTime */
+    protected $executionStart;
 
     /**
      * AbstractCommand constructor.
      * @param ConsoleDBLogger $logger
      * @param BaseManager $manager
+     *
+     * @throws \Exception
      */
     public function __construct(
         ConsoleDBLogger $logger,
@@ -33,6 +37,7 @@ abstract class AbstractCommand extends Command
         $this->manager = $manager;
 
         $this->output = null;
+        $this->executionStart = new \DateTime('now');
     }
 
     /**
@@ -74,5 +79,15 @@ abstract class AbstractCommand extends Command
     protected function space(): void
     {
         $this->output->writeln('');
+    }
+
+    /**
+     * @return int
+     *
+     * @throws \Exception
+     */
+    protected function getExecutionTime()
+    {
+        return ((new \DateTime('now'))->getTimestamp()) - ($this->executionStart->getTimestamp());
     }
 }

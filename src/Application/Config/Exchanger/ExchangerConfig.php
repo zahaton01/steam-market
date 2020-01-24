@@ -4,6 +4,7 @@ namespace App\Application\Config\Exchanger;
 
 use App\Application\Config\ConfigInterface;
 use App\Application\Exception\Config\ConfigInvokeFailed;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
@@ -12,30 +13,36 @@ class ExchangerConfig implements ConfigInterface
 {
     /** @var array */
     private $rates;
+    /** @var ContainerInterface */
+    private $container;
 
     /**
-     * @param array $params
-     *
+     * CSItemsConfig constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
      * @return ConfigInterface
      *
      * @throws ConfigInvokeFailed
      */
-    public function __invoke(array $params = []): ConfigInterface
+    public function __invoke(): ConfigInterface
     {
-        if (!isset($params['project_dir']))
-            throw new ConfigInvokeFailed('Missing project dir in params');
+        try {
+            $this->rates = json_decode(file_get_contents("{$this->container->getParameter('kernel.project_dir')}/resources/config/tools/exchanger/exchange_rates.json"), true);
+        } catch (\Exception $e) {
+            throw new ConfigInvokeFailed($e->getMessage(), $e->getCode(), $e);
+        }
 
-        $this->rates = json_decode(file_get_contents("{$params['project_dir']}/resources/config/tools/exchanger/exchange_rates.json"), true);
+        if (!$this->rates) {
+            throw new ConfigInvokeFailed('Failed to retrieve data of exchange rates');
+        }
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClass(): string
-    {
-        return ExchangerConfig::class;
     }
 
     /**
