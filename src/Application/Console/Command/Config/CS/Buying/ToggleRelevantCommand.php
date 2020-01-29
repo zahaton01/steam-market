@@ -38,9 +38,14 @@ class ToggleRelevantCommand extends AbstractConfigCommand
      *
      * @throws ConfigInvokeFailed
      * @throws ConfigNotFound
+     * @throws \Exception
      */
-    public function __construct(ConsoleDBLogger $logger, BaseManager $manager, ConfigResolver $config, ApiResourceResolver $resources)
-    {
+    public function __construct(
+        ConsoleDBLogger $logger,
+        BaseManager $manager,
+        ConfigResolver $config,
+        ApiResourceResolver $resources
+    ) {
         parent::__construct($logger, $manager, $config);
 
         $this->resources = $resources;

@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Domain\Entity\CS\TM;
+namespace App\Domain\Entity\CS\Steam;
 
 use App\Domain\Entity\AbstractEntity;
 use App\Domain\Entity\CS\CSItem;
 use App\Domain\Traits\CreationDateTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 
 /**
- * @author  Anton Zakharuk <zahaton01@gmail.com>
+ * @author Anton Zakharuk <zahaton01@gmail.com>
  *
- * @ORM\Table("tm_cs_pricings")
- * @ORM\Entity()
+ * @ORM\MappedSuperclass()
  */
-class CSTMPricing extends AbstractEntity
+abstract class AbstractSteamPrice extends AbstractEntity
 {
     use CreationDateTrait;
 
     /**
      * @var CSItem
      *
-     * @ORM\ManyToOne(targetEntity="App\Domain\Entity\CS\CSItem", inversedBy="tmSells")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Entity\CS\CSItem")
      * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
      */
     private $item;
@@ -29,16 +27,16 @@ class CSTMPricing extends AbstractEntity
     /**
      * @var float
      *
-     * @ORM\Column(name="min_price", type="float", nullable=false)
+     * @ORM\Column(name="lowest_price", type="float", nullable=false)
      */
-    private $minPrice;
+    private $lowestPrice;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="max_price", type="float", nullable=false)
+     * @ORM\Column(name="highest_price", type="float", nullable=false)
      */
-    private $maxPrice;
+    private $highestPrice;
 
     /**
      * @var float
@@ -48,11 +46,18 @@ class CSTMPricing extends AbstractEntity
     private $average;
 
     /**
-     * @var PersistentCollection
+     * @var float
      *
-     * @ORM\OneToMany(targetEntity="App\Domain\Entity\CS\TM\CSTMSell", mappedBy="pricing", cascade={"persist", "remove"})
+     * @ORM\Column(name="median", type="float", nullable=false)
      */
-    private $sells;
+    private $median;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="sold", type="integer", nullable=false)
+     */
+    private $sold;
 
     /**
      * @var string
@@ -83,38 +88,38 @@ class CSTMPricing extends AbstractEntity
     /**
      * @return float
      */
-    public function getMinPrice(): ?float
+    public function getLowestPrice(): ?float
     {
-        return $this->minPrice;
+        return $this->lowestPrice;
     }
 
     /**
-     * @param float $minPrice
+     * @param float $lowestPrice
      *
      * @return self
      */
-    public function setMinPrice(?float $minPrice): self
+    public function setLowestPrice(?float $lowestPrice): self
     {
-        $this->minPrice = $minPrice;
+        $this->lowestPrice = $lowestPrice;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getMaxPrice(): ?float
+    public function getHighestPrice(): ?float
     {
-        return $this->maxPrice;
+        return $this->highestPrice;
     }
 
     /**
-     * @param float $maxPrice
+     * @param float $highestPrice
      *
      * @return self
      */
-    public function setMaxPrice(?float $maxPrice): self
+    public function setHighestPrice(?float $highestPrice): self
     {
-        $this->maxPrice = $maxPrice;
+        $this->highestPrice = $highestPrice;
         return $this;
     }
 
@@ -138,21 +143,40 @@ class CSTMPricing extends AbstractEntity
     }
 
     /**
-     * @return PersistentCollection
+     * @return float
      */
-    public function getSells(): ?PersistentCollection
+    public function getMedian(): ?float
     {
-        return $this->sells;
+        return $this->median;
     }
 
     /**
-     * @param CSTMSell $sell
+     * @param float $median
      *
      * @return self
      */
-    public function addSell(?CSTMSell $sell): self
+    public function setMedian(?float $median): self
     {
-        $this->sells[] = $sell;
+        $this->median = $median;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSold(): ?int
+    {
+        return $this->sold;
+    }
+
+    /**
+     * @param int $sold
+     *
+     * @return self
+     */
+    public function setSold(?int $sold): self
+    {
+        $this->sold = $sold;
         return $this;
     }
 

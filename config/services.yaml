@@ -1,13 +1,7 @@
-parameters:
-    proxies:
-        - 123
-        - 122
-
 services:
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
+        autowire: true
+        autoconfigure: true
     App\:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
@@ -26,12 +20,17 @@ services:
         App\Application\Config\ConfigInterface:
             tags: [app.config]
 
+        App\Application\Tools\DecisionMaker\DecisionMakerInstanceInterface:
+            tags: [decision.instance]
+
     App\Domain\Factory\CS\CSFactoryResolver:
         arguments: [!tagged cs.factory]
 
     App\Application\Resources\ApiResourceResolver:
         arguments: [!tagged api.resource]
 
-    #config
     App\Application\Config\ConfigResolver:
         arguments: [!tagged app.config]
+
+    App\Application\Tools\DecisionMaker\DecisionMaker:
+        arguments: [!tagged decision.instance]

@@ -48,12 +48,22 @@ abstract class AbstractClient
         $counter = 0;
 
         foreach ($params as $key => $param) {
+            $symbol = '&';
             if ($counter === 0) {
-                $str .= "?$key=$param";
-            } else {
-                $str .= "&$key=$param";
+                $symbol = '?';
             }
 
+            if (is_array($param)) {
+                $queryParam = '';
+                
+                foreach ($param as $val) {
+                    $queryParam .= "$key=$val$symbol";
+                }
+            } else {
+                $queryParam = "$key=$param";
+            }
+            
+            $str .= $symbol . $queryParam;
             $counter++;
         }
 

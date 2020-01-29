@@ -16,6 +16,8 @@ class CSItemsConfig implements ConfigInterface
     private $container;
     /** @var array */
     private $bannedForBuying;
+    /** @var float */
+    private $triggerDecisionMakerPercentage;
 
     /**
      * CSItemsConfig constructor.
@@ -35,6 +37,9 @@ class CSItemsConfig implements ConfigInterface
     {
         try {
             $this->bannedForBuying = json_decode(file_get_contents("{$this->container->getParameter('kernel.project_dir')}/resources/config/items/cs/relevant.json"), true);
+
+            $configFile = json_decode(file_get_contents("{$this->container->getParameter('kernel.project_dir')}/resources/config/items/cs/config.json"), true);
+            $this->triggerDecisionMakerPercentage = $configFile['trigger_decision_maker'];
         } catch (\Exception $e) {
             throw new ConfigInvokeFailed($e->getMessage(), $e->getCode(), $e);
         }
@@ -52,5 +57,13 @@ class CSItemsConfig implements ConfigInterface
     public function getBannedForBuying()
     {
         return $this->bannedForBuying;
+    }
+
+    /**
+     * @return float
+     */
+    public function getTriggerDecisionMakerPercentage(): ?float
+    {
+        return $this->triggerDecisionMakerPercentage;
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Domain\Entity\CS;
 
 use App\Domain\Entity\AbstractEntity;
-use App\Domain\Entity\CS\Steam\CSSteamPrice;
 use App\Domain\Entity\CS\TM\CSTMPricing;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
@@ -43,13 +42,6 @@ class CSItem extends AbstractEntity
      * @ORM\Column(name="steam_link", type="string", nullable=false)
      */
     private $steamLink;
-
-    /**
-     * @var PersistentCollection
-     *
-     * @ORM\OneToMany(targetEntity="App\Domain\Entity\CS\Steam\CSSteamPrice", mappedBy="item")
-     */
-    private $steamPrices;
 
     /**
      * @var PersistentCollection
@@ -131,25 +123,6 @@ class CSItem extends AbstractEntity
     public function setSteamLink(?string $steamLink): self
     {
         $this->steamLink = $steamLink;
-        return $this;
-    }
-
-    /**
-     * @return PersistentCollection
-     */
-    public function getSteamPrices(): ?PersistentCollection
-    {
-        return $this->steamPrices;
-    }
-
-    /**
-     * @param CSSteamPrice $steamPrice
-     *
-     * @return self
-     */
-    public function addSteamPrice(CSSteamPrice $steamPrice): self
-    {
-        $this->steamPrices[] = $steamPrice;
         return $this;
     }
 

@@ -7,6 +7,7 @@ use App\Application\Config\ConfigResolver;
 use App\Application\Exception\Config\ConfigInvokeFailed;
 use App\Application\Exception\Config\ConfigNotFound;
 use App\Application\Resources\API\TM\Client\TMCSJsonClient;
+use App\Application\Resources\API\TM\Proto\Sells\TMPricingProto;
 use App\Application\Resources\ApiResourceInterface;
 
 /**
@@ -58,6 +59,19 @@ class TMMarketplace implements ApiResourceInterface
     public function getCsItemInstances(string $hashName)
     {
         return $this->csJsonClient->getItemInstances($hashName);
+    }
+
+    /**
+     * @param array $hashNames
+     *
+     * @return Proto\Sells\TMPricingProto
+     *
+     * @throws Exception\TMItemNotFound
+     * @throws Exception\TMRequestFailed
+     */
+    public function getPricing(array $hashNames): TMPricingProto
+    {
+        return $this->csJsonClient->getPricing($hashNames);
     }
 
     /**

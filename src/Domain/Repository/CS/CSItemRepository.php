@@ -26,4 +26,26 @@ class CSItemRepository extends EntityRepository
 
         return new Paginator($qb->getQuery(), true);
     }
+
+    /**
+     * @param Pagination $pagination
+     *
+     * @return mixed
+     */
+    public function getRelevant(Pagination $pagination = null)
+    {
+        $qb = $this->createQueryBuilder('i');
+        $qb
+            ->where('i.isAllowedForBuying = 1');
+
+        if (null !== $pagination) {
+            $qb
+                ->setFirstResult($pagination->getFirstResult())
+                ->setMaxResults($pagination->getPageSize());
+
+            return new Paginator($qb->getQuery(), true);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }
