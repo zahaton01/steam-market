@@ -75,6 +75,18 @@ class TMMarketplace implements ApiResourceInterface
     }
 
     /**
+     * @param string $hashName
+     * @param float $price
+     *
+     * @return Proto\Buy\CS\BoughtProto
+     * @throws Exception\TMRequestFailed
+     */
+    public function buyCs(string $hashName, float $price)
+    {
+        return $this->csJsonClient->buy($hashName, $price, uniqid());
+    }
+
+    /**
      * @return array
      */
     public function getConfig(): ?array

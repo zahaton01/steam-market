@@ -1,0 +1,8 @@
+framework:
+    messenger:
+        transports:
+            tm_cs_decision_queue: '%env(MESSENGER_TRANSPORT_DSN)%/tm_cs_decision_queue'
+            tm_cs_buying_queue: '%env(MESSENGER_TRANSPORT_DSN)%/tm_cs_buying_queue'
+        routing:
+            'App\Application\AMQP\CS\Message\CSBuyDecision': tm_cs_decision_queue
+            'App\Application\AMQP\CS\Message\CSBuy': tm_cs_buying_queue

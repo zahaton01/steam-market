@@ -2,6 +2,8 @@
 
 namespace App\Application\Resources\API\TM\Util;
 
+use App\Application\Util\TextUtil;
+
 /**
  * @author  Anton Zakharuk <zahaton01@gmail.com>
  */
@@ -16,6 +18,6 @@ class CSItemUtil
      */
     public static function instanceLink(string $instance)
     {
-        return self::URL_ITEM . "$instance/";
+        return self::URL_ITEM . TextUtil::replaceLowers($instance) ."/";
     }
 }

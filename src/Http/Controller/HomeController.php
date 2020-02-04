@@ -11,6 +11,7 @@ class HomeController
      */
     public function index()
     {
+        phpinfo();
         //$marketplace->retrieveInstance('AK-47 | Redline (Field-Tested)');
         //$res = $marketplace->retrieveItemSells('AK-47 | Redline (Field-Tested)');
 

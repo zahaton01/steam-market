@@ -86,9 +86,15 @@ class TMSellsGrabberCommand extends AbstractSellsCommand
                 $hashNames[] = $item->getHashName();
             }
 
-            $this->comment("Getting sells from TM...");
-            /** @var TMPricingProto $tmPricingProto */
-            $tmPricingProto = $this->resources->resolve(TMMarketplace::class)->getPricing($hashNames);
+            try {
+                $this->comment("Getting sells from TM...");
+                /** @var TMPricingProto $tmPricingProto */
+                $tmPricingProto = $this->resources->resolve(TMMarketplace::class)->getPricing($hashNames);
+            } catch (\Exception $e) {
+                $this->error($e->getMessage());
+                continue;
+            }
+
             $this->info('Done');
 
             foreach ($tmPricingProto->getPricings() as $tmPricing) {

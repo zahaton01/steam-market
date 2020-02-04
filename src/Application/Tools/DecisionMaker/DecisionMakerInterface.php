@@ -10,7 +10,9 @@ use App\Application\Tools\DecisionMaker\Decision\DecisionResultInterface;
 interface DecisionMakerInterface
 {
     /**
+     * @param string $hashName
+     *
      * @return DecisionResultInterface
      */
-    public function shallWeBuy(): DecisionResultInterface;
+    public function shallWeBuyFromTM(string $hashName);
 }

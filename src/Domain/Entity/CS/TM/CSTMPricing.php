@@ -2,6 +2,7 @@
 
 namespace App\Domain\Entity\CS\TM;
 
+use App\Application\Resources\API\TM\Proto\Sells\Model\TMSell;
 use App\Domain\Entity\AbstractEntity;
 use App\Domain\Entity\CS\CSItem;
 use App\Domain\Traits\CreationDateTrait;
@@ -12,7 +13,7 @@ use Doctrine\ORM\PersistentCollection;
  * @author  Anton Zakharuk <zahaton01@gmail.com>
  *
  * @ORM\Table("tm_cs_pricings")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Domain\Repository\CS\CSTMPricingRepository")
  */
 class CSTMPricing extends AbstractEntity
 {
@@ -138,7 +139,7 @@ class CSTMPricing extends AbstractEntity
     }
 
     /**
-     * @return PersistentCollection
+     * @return TMSell[]
      */
     public function getSells(): ?PersistentCollection
     {

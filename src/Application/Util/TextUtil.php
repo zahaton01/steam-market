@@ -24,7 +24,7 @@ class TextUtil
      *
      * @return string
      */
-    public function replaceLowers(string $string, string $replacer = '-')
+    public static function replaceLowers(string $string, string $replacer = '-')
     {
         return str_replace('_', $replacer, $string);
     }

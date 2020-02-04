@@ -17,6 +17,11 @@ class TMPricingProto extends AbstractProto
     /** @var TMPricing[] */
     private $pricings;
 
+    /**
+     * @return $this|mixed
+     *
+     * @throws MissingProtoFieldException
+     */
     public function __invoke()
     {
         if ($this->validate()) {
